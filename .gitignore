@@ -1,0 +1,11 @@
+# JetBrain's Idea specific stuff #
+.idea*
+*.iml
+
+## Plugin-specific files:
+
+# IntelliJ
+/out/
+
+### Gradle ###
+.gradle
