@@ -11,7 +11,7 @@ if (words.size() < 4) {
 // Treat non-alphanumeric characters as whitespace
 // Disregard words less than 4 characters long
 List<String> scrubInput(String str) {
-  str.split("[^a-zA-Z]").findAll { it.length() > 3 }
+  str.toLowerCase().split("[^a-zA-Z]").findAll { it.length() > 3 }
 }
 
 // List of all possible 2-word combinations
