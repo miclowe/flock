@@ -1,11 +1,14 @@
 List<String> words = scrubInput(args[0])
+processWords(words)
 
-if (words.size() < 4) {
-  println "A string consisting of at least 4 words is required"
-} else {
-  List combos = getAllCombinations(words)
-  Map results = findAnagramPairs(combos)
-  printResults(results)
+void processWords(List<String> words) {
+  if (words.size() < 4) {
+    println "A string consisting of at least 4 words is required"
+  } else {
+    List combos = getAllCombinations(words)
+    List results = findAnagramPairs(combos)
+    printResults(results)
+  }
 }
 
 // Treat non-alphanumeric characters as whitespace
@@ -26,8 +29,8 @@ List<List<String>> getAllCombinations(List<String> words) {
 }
 
 // Iterate through list of all possible 2-word combinations to find anagram pairs
-Map findAnagramPairs(List<List<String>> combos) {
-  Map result = [:]
+List findAnagramPairs(List<List<String>> combos) {
+  List result = []
   for (k = 0; k < combos.size(); k++) {
     for (m = k + 1; m < combos.size(); m++) {
       if (!combos[k].contains(combos[m][0]) && !combos[k].contains(combos[m][1])) {
@@ -36,7 +39,7 @@ Map findAnagramPairs(List<List<String>> combos) {
         String s2 = combos[m].join()
         if (s1.length() == s2.length() && isAnagram(s1, s2)) {
           if (isAnagram(s1, s2)) {
-            result[combos[k]] = combos[m]
+            result << [combos[k], combos[m]]
           }
         }
       }
@@ -50,12 +53,12 @@ boolean isAnagram(String s1, String s2) {
   s1.split("").sort() == s2.split("").sort()
 }
 
-void printResults(Map results) {
-  if (results.size() > 0) {
-    results.each { k, v ->
-      println "${k.join(" ")} and ${v.join(" ")}"
-    }
-  } else {
+void printResults(List results) {
+  if (!results) {
     println "No anagram pairs found"
+  } else {
+    results.each {
+      println it.join(' and ')
+    }
   }
 }
