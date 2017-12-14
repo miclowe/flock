@@ -38,9 +38,7 @@ List findAnagramPairs(List<List<String>> combos) {
         String s1 = combos[k].join()
         String s2 = combos[m].join()
         if (s1.length() == s2.length() && isAnagram(s1, s2)) {
-          if (isAnagram(s1, s2)) {
-            result << [combos[k], combos[m]]
-          }
+          result << [combos[k], combos[m]]
         }
       }
     }
