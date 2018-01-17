@@ -20,4 +20,8 @@ If Groovy is installed, the script can be run from the command line as such
 
 ```groovy AnagramPairs.groovy "Happy eaters always heat their yappers"```
 
+From Docker
+
+```docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy groovy AnagramPairs.groovy "Happy eaters always heat their yappers"```
+
 Another option would be to copy the script code and paste into the [online Groovy console](https://groovyconsole.appspot.com/). Just be sure to replace `args[0]` on [line 1](https://github.com/miclowe/flock/blob/04ce6730b19b415907af4f801426929a6c9c7225/src/main/groovy/AnagramPairs.groovy#L1) with a string of text.
